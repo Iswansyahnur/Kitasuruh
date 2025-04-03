@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kita Suruh - Solusi Jasa Harian Anda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#25D366',
+                        secondary: '#128C7E',
+                        accent: '#075E54',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .floating-whatsapp {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="bg-primary p-2 rounded-full mr-3">
+                    <i class="fas fa-hands-helping text-white text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800">Kita<span class="text-primary">Suruh</span></h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-600 hover:text-primary font-medium">Layanan</a>
+                <a href="#about" class="text-gray-600 hover:text-primary font-medium">Tentang Kami</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-primary font-medium">Testimoni</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary font-medium">Kontak</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
+            <a href="#services" class="block py-2 text-gray-600 hover:text-primary">Layanan</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-primary">Tentang Kami</a>
+            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-primary">Testimoni</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-primary">Kontak</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Butuh Bantuan? <span class="text-primary">Kita Suruh</span> Saja!</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Kami menyediakan berbagai jasa harian untuk mempermudah hidup Anda. Dari pindahan rumah hingga belanja kebutuhan, kami siap membantu.</p>
+            <a href="https://wa.me/6285173177156?text=Halo%20Kita%20Suruh,%20saya%20ingin%20menggunakan%20layanan%20Anda" 
+               class="bg-primary hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-lg inline-flex items-center transition duration-300">
+                <i class="fab fa-whatsapp mr-2 text-xl"></i> Pesan via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Layanan Kami</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami menawarkan berbagai macam jasa untuk memenuhi kebutuhan harian Anda dengan profesional dan terpercaya.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i class="fas fa-truck-moving text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Pindahan</h3>
+                    <p class="text-gray-600 mb-4">Pindahan rumah atau kantor jadi lebih mudah dengan tim profesional kami. Kami siap membantu dari packing hingga pengaturan ulang.</p>
+                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20pindahan%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i class="fas fa-car text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Antar Jemput</h3>
+                    <p class="text-gray-600 mb-4">Butuh antar jemput anak sekolah, bandara, atau tujuan lainnya? Driver kami siap mengantar dengan aman dan tepat waktu.</p>
+                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20antar%20jemput%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i class="fas fa-broom text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Bersih-bersih</h3>
+                    <p class="text-gray-600 mb-4">Rumah atau kantor Anda butuh dibersihkan? Tim cleaning service kami profesional dan menggunakan peralatan lengkap.</p>
+                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20bersih-bersih%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i class="fas fa-utensils text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Beli Makanan</h3>
+                    <p class="text-gray-600 mb-4">Sibuk bekerja tapi ingin makanan favorit? Kami bisa membelikan dan mengantarkan makanan dari restoran pilihan Anda.</p>
+                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20beli%20makanan%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i class="fas fa-shopping-basket text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Belanja</h3>
+                    <p class="text-gray-600 mb-4">Tidak sempat belanja kebutuhan harian? Kami bisa belanjakan untuk Anda sesuai daftar belanja yang diberikan.</p>
+                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20belanja%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <i class="fas fa-ellipsis-h text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Lainnya</h3>
+                    <p class="text-gray-600 mb-4">Punya kebutuhan khusus? Ceritakan kepada kami! Kami siap membantu dengan berbagai jasa tambahan sesuai permintaan Anda.</p>
+                    <a href="https://wa.me/6285173177156?text=Saya%20membutuhkan%20jasa%20lainnya%20dari%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                        Konsultasi Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1552664730-d306ca4b3ae8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Team Kita Suruh" class="rounded-xl shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Tentang <span class="text-primary">Kita Suruh</span></h2>
+                    <p class="text-gray-600 mb-4">Kita Suruh hadir sebagai solusi untuk mempermudah aktivitas harian masyarakat yang sibuk. Kami memahami bahwa waktu Anda sangat berharga.</p>
+                    <p class="text-gray-600 mb-6">Dengan tim profesional yang terlatih dan terpercaya, kami berkomitmen untuk memberikan pelayanan terbaik dengan harga yang kompetitif.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <p class="text-gray-700 flex-1">Lebih dari 1000+ pelanggan puas</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <p class="text-gray-700 flex-1">Tim profesional yang terlatih dan terverifikasi</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <p class="text-gray-700 flex-1">Garansi kepuasan pelanggan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Apa Kata Mereka?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Testimoni dari pelanggan yang telah menggunakan layanan Kita Suruh</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Budi Santoso</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Jasa pindahan dari Kita Suruh sangat membantu. Timnya profesional dan barang-barang sampai dengan selamat. Terima kasih!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Ani Wijaya</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Saya sering menggunakan jasa antar jemput anak sekolah. Driver-nya ramah dan tepat waktu. Sangat recommended!"</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Dewi Lestari</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Cleaning service dari Kita Suruh sangat detail dalam membersihkan rumah saya. Hasilnya bersih maksimal dan harganya terjangkau."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Siap Membantu Kebutuhan Anda</h2>
+            <p class="text-white text-xl mb-8 max-w-2xl mx-auto">Pesan sekarang dan rasakan kemudahan dalam aktivitas harian Anda dengan layanan profesional dari Kita Suruh.</p>
+            <a href="https://wa.me/6285173177156?text=Halo%20Kita%20Suruh,%20saya%20ingin%20menggunakan%20layanan%20Anda" 
+               class="bg-white hover:bg-gray-100 text-primary font-bold py-4 px-8 rounded-full text-lg inline-flex items-center transition duration-300">
+                <i class="fab fa-whatsapp mr-2 text-xl"></i> Hubungi via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami siap menjawab pertanyaan dan membantu kebutuhan Anda</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="bg-gray-50 rounded-xl p-8 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Informasi Kontak</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Alamat</h4>
+                                    <p class="text-gray-600">Jl. Contoh No. 123, Jakarta Selatan</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Telepon</h4>
+                                    <p class="text-gray-600">(021) 12345678</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Email</h4>
+                                    <p class="text-gray-600">info@kitasuruh.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                    <i class="fab fa-whatsapp text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">WhatsApp</h4>
+                                    <p class="text-gray-600">0851-7317-7156</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 rounded-xl p-8 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Kirim Pesan</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">Nomor Telepon</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Pesan</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                            </div>
+                            <button type="submit" class="bg-primary hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary p-2 rounded-full mr-3">
+                            <i class="fas fa-hands-helping text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Kita<span class="text-primary">Suruh</span></h3>
+                    </div>
+                    <p class="text-gray-400">Solusi jasa harian profesional untuk mempermudah hidup Anda.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Jasa Pindahan</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Antar Jemput</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Bersih-bersih</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Beli Makanan</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Jasa Lainnya</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Perusahaan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tentang Kami</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tim Kami</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Karir</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Hubungi Kami</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mr-2 mt-1"></i>
+                            <span class="text-gray-400">Jl. Contoh No. 123, Jakarta Selatan</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-primary mr-2"></i>
+                            <span class="text-gray-400">(021) 12345678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp text-primary mr-2"></i>
+                            <span class="text-gray-400">0851-7317-7156</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-2"></i>
+                            <span class="text-gray-400">info@kitasuruh.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Kita Suruh. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6285173177156?text=Halo%20Kita%20Suruh,%20saya%20ingin%20menggunakan%20layanan%20Anda" 
+       class="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-lg floating-whatsapp z-50">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - <a href="https://enzostvs-deepsite.hf.space?remix=Iswansyahnur/kitasuruh" style="color: #fff;text-decoration: underline;" target="_blank" >🧬 Remix</a></p></body>
+</html>
