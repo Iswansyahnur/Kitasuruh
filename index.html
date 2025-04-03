@@ -40,23 +40,63 @@
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
+
+        /* Page transition */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Team card styling */
+        .team-card:hover .team-social {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-social {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        /* Blog card styling */
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Career card styling */
+        .career-card:hover {
+            border-left: 4px solid #25D366;
+        }
     </style>
 </head>
 <body class="font-sans bg-gray-50">
     <!-- Header/Navbar -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
+            <div class="flex items-center cursor-pointer" onclick="showPage('home')">
                 <div class="bg-primary p-2 rounded-full mr-3">
                     <i class="fas fa-hands-helping text-white text-xl"></i>
                 </div>
                 <h1 class="text-2xl font-bold text-gray-800">Kita<span class="text-primary">Suruh</span></h1>
             </div>
             <nav class="hidden md:flex space-x-8">
-                <a href="#services" class="text-gray-600 hover:text-primary font-medium">Layanan</a>
-                <a href="#about" class="text-gray-600 hover:text-primary font-medium">Tentang Kami</a>
-                <a href="#testimonials" class="text-gray-600 hover:text-primary font-medium">Testimoni</a>
-                <a href="#contact" class="text-gray-600 hover:text-primary font-medium">Kontak</a>
+                <a href="#services" class="text-gray-600 hover:text-primary font-medium" onclick="showPage('home')">Beranda</a>
+                <a href="#services" class="text-gray-600 hover:text-primary font-medium" onclick="showPage('services')">Layanan</a>
+                <a href="#about" class="text-gray-600 hover:text-primary font-medium" onclick="showPage('about')">Tentang Kami</a>
+                <a href="#team" class="text-gray-600 hover:text-primary font-medium" onclick="showPage('team')">Tim Kami</a>
+                <a href="#blog" class="text-gray-600 hover:text-primary font-medium" onclick="showPage('blog')">Blog</a>
+                <a href="#careers" class="text-gray-600 hover:text-primary font-medium" onclick="showPage('careers')">Karir</a>
             </nav>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-gray-600 focus:outline-none">
@@ -66,316 +106,751 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
-            <a href="#services" class="block py-2 text-gray-600 hover:text-primary">Layanan</a>
-            <a href="#about" class="block py-2 text-gray-600 hover:text-primary">Tentang Kami</a>
-            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-primary">Testimoni</a>
-            <a href="#contact" class="block py-2 text-gray-600 hover:text-primary">Kontak</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-primary" onclick="showPage('home')">Beranda</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-primary" onclick="showPage('services')">Layanan</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-primary" onclick="showPage('about')">Tentang Kami</a>
+            <a href="#team" class="block py-2 text-gray-600 hover:text-primary" onclick="showPage('team')">Tim Kami</a>
+            <a href="#blog" class="block py-2 text-gray-600 hover:text-primary" onclick="showPage('blog')">Blog</a>
+            <a href="#careers" class="block py-2 text-gray-600 hover:text-primary" onclick="showPage('careers')">Karir</a>
+            <a href="#privacy" class="block py-2 text-gray-600 hover:text-primary" onclick="showPage('privacy')">Kebijakan Privasi</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg text-white py-20 md:py-32">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Butuh Bantuan? <span class="text-primary">Kita Suruh</span> Saja!</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Kami menyediakan berbagai jasa harian untuk mempermudah hidup Anda. Dari pindahan rumah hingga belanja kebutuhan, kami siap membantu.</p>
-            <a href="https://wa.me/6285173177156?text=Halo%20Kita%20Suruh,%20saya%20ingin%20menggunakan%20layanan%20Anda" 
-               class="bg-primary hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-lg inline-flex items-center transition duration-300">
-                <i class="fab fa-whatsapp mr-2 text-xl"></i> Pesan via WhatsApp
-            </a>
-        </div>
-    </section>
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <!-- Hero Section -->
+        <section class="hero-bg text-white py-20 md:py-32">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Butuh Bantuan? <span class="text-primary">Kita Suruh</span> Saja!</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Kami menyediakan berbagai jasa harian untuk mempermudah hidup Anda. Dari pindahan rumah hingga belanja kebutuhan, kami siap membantu.</p>
+                <a href="https://wa.me/6285173177156?text=Halo%20Kita%20Suruh,%20saya%20ingin%20menggunakan%20layanan%20Anda" 
+                   class="bg-primary hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-lg inline-flex items-center transition duration-300">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i> Pesan via WhatsApp
+                </a>
+            </div>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Layanan Kami</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Kami menawarkan berbagai macam jasa untuk memenuhi kebutuhan harian Anda dengan profesional dan terpercaya.</p>
+        <!-- Services Section -->
+        <section id="services" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Layanan Kami</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Kami menawarkan berbagai macam jasa untuk memenuhi kebutuhan harian Anda dengan profesional dan terpercaya.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="fas fa-truck-moving text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Pindahan</h3>
+                        <p class="text-gray-600 mb-4">Pindahan rumah atau kantor jadi lebih mudah dengan tim profesional kami. Kami siap membantu dari packing hingga pengaturan ulang.</p>
+                        <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20pindahan%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                            Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="fas fa-car text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Antar Jemput</h3>
+                        <p class="text-gray-600 mb-4">Butuh antar jemput anak sekolah, bandara, atau tujuan lainnya? Driver kami siap mengantar dengan aman dan tepat waktu.</p>
+                        <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20antar%20jemput%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                            Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Service 3 -->
+                    <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="fas fa-broom text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Bersih-bersih</h3>
+                        <p class="text-gray-600 mb-4">Rumah atau kantor Anda butuh dibersihkan? Tim cleaning service kami profesional dan menggunakan peralatan lengkap.</p>
+                        <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20bersih-bersih%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                            Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Service 4 -->
+                    <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="fas fa-utensils text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Beli Makanan</h3>
+                        <p class="text-gray-600 mb-4">Sibuk bekerja tapi ingin makanan favorit? Kami bisa membelikan dan mengantarkan makanan dari restoran pilihan Anda.</p>
+                        <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20beli%20makanan%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                            Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Service 5 -->
+                    <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="fas fa-shopping-basket text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Belanja</h3>
+                        <p class="text-gray-600 mb-4">Tidak sempat belanja kebutuhan harian? Kami bisa belanjakan untuk Anda sesuai daftar belanja yang diberikan.</p>
+                        <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20belanja%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                            Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Service 6 -->
+                    <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                            <i class="fas fa-ellipsis-h text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Lainnya</h3>
+                        <p class="text-gray-600 mb-4">Punya kebutuhan khusus? Ceritakan kepada kami! Kami siap membantu dengan berbagai jasa tambahan sesuai permintaan Anda.</p>
+                        <a href="https://wa.me/6285173177156?text=Saya%20membutuhkan%20jasa%20lainnya%20dari%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
+                            Konsultasi Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i class="fas fa-truck-moving text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Pindahan</h3>
-                    <p class="text-gray-600 mb-4">Pindahan rumah atau kantor jadi lebih mudah dengan tim profesional kami. Kami siap membantu dari packing hingga pengaturan ulang.</p>
-                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20pindahan%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
-                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i class="fas fa-car text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Antar Jemput</h3>
-                    <p class="text-gray-600 mb-4">Butuh antar jemput anak sekolah, bandara, atau tujuan lainnya? Driver kami siap mengantar dengan aman dan tepat waktu.</p>
-                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20antar%20jemput%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
-                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i class="fas fa-broom text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Bersih-bersih</h3>
-                    <p class="text-gray-600 mb-4">Rumah atau kantor Anda butuh dibersihkan? Tim cleaning service kami profesional dan menggunakan peralatan lengkap.</p>
-                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20bersih-bersih%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
-                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i class="fas fa-utensils text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Beli Makanan</h3>
-                    <p class="text-gray-600 mb-4">Sibuk bekerja tapi ingin makanan favorit? Kami bisa membelikan dan mengantarkan makanan dari restoran pilihan Anda.</p>
-                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20beli%20makanan%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
-                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i class="fas fa-shopping-basket text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Belanja</h3>
-                    <p class="text-gray-600 mb-4">Tidak sempat belanja kebutuhan harian? Kami bisa belanjakan untuk Anda sesuai daftar belanja yang diberikan.</p>
-                    <a href="https://wa.me/6285173177156?text=Saya%20tertarik%20dengan%20jasa%20belanja%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
-                        Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card bg-white rounded-xl shadow-md p-6 transition duration-300">
-                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                        <i class="fas fa-ellipsis-h text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Jasa Lainnya</h3>
-                    <p class="text-gray-600 mb-4">Punya kebutuhan khusus? Ceritakan kepada kami! Kami siap membantu dengan berbagai jasa tambahan sesuai permintaan Anda.</p>
-                    <a href="https://wa.me/6285173177156?text=Saya%20membutuhkan%20jasa%20lainnya%20dari%20Kita%20Suruh" class="text-primary font-medium inline-flex items-center">
-                        Konsultasi Sekarang <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                    <img src="https://images.unsplash.com/photo-1552664730-d306ca4b3ae8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                         alt="Team Kita Suruh" class="rounded-xl shadow-lg w-full">
-                </div>
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Tentang <span class="text-primary">Kita Suruh</span></h2>
-                    <p class="text-gray-600 mb-4">Kita Suruh hadir sebagai solusi untuk mempermudah aktivitas harian masyarakat yang sibuk. Kami memahami bahwa waktu Anda sangat berharga.</p>
-                    <p class="text-gray-600 mb-6">Dengan tim profesional yang terlatih dan terpercaya, kami berkomitmen untuk memberikan pelayanan terbaik dengan harga yang kompetitif.</p>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
-                                <i class="fas fa-check text-primary"></i>
-                            </div>
-                            <p class="text-gray-700 flex-1">Lebih dari 100+ pelanggan puas</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
-                                <i class="fas fa-check text-primary"></i>
-                            </div>
-                            <p class="text-gray-700 flex-1">Tim profesional yang terlatih dan terverifikasi</p>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
-                                <i class="fas fa-check text-primary"></i>
-                            </div>
-                            <p class="text-gray-700 flex-1">Garansi kepuasan pelanggan</p>
-                        </div>
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                        <img src="https://images.unsplash.com/photo-1552664730-d306ca4b3ae8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Team Kita Suruh" class="rounded-xl shadow-lg w-full">
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Apa Kata Mereka?</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Testimoni dari pelanggan yang telah menggunakan layanan Kita Suruh</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">Budi Santoso</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"Jasa pindahan dari Kita Suruh sangat membantu. Timnya profesional dan barang-barang sampai dengan selamat. Terima kasih!"</p>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">Ani Wijaya</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"Saya sering menggunakan jasa antar jemput anak sekolah. Driver-nya ramah dan tepat waktu. Sangat recommended!"</p>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">Dewi Lestari</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600">"Cleaning service dari Kita Suruh sangat detail dalam membersihkan rumah saya. Hasilnya bersih maksimal dan harganya terjangkau."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 bg-primary">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Siap Membantu Kebutuhan Anda</h2>
-            <p class="text-white text-xl mb-8 max-w-2xl mx-auto">Pesan sekarang dan rasakan kemudahan dalam aktivitas harian Anda dengan layanan profesional dari Kita Suruh.</p>
-            <a href="https://wa.me/6285173177156?text=Halo%20Kita%20Suruh,%20saya%20ingin%20menggunakan%20layanan%20Anda" 
-               class="bg-white hover:bg-gray-100 text-primary font-bold py-4 px-8 rounded-full text-lg inline-flex items-center transition duration-300">
-                <i class="fab fa-whatsapp mr-2 text-xl"></i> Hubungi via WhatsApp
-            </a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Kami siap menjawab pertanyaan dan membantu kebutuhan Anda</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                    <div class="bg-gray-50 rounded-xl p-8 shadow-sm">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Informasi Kontak</h3>
-                        
-                        <div class="space-y-6">
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Tentang <span class="text-primary">Kita Suruh</span></h2>
+                        <p class="text-gray-600 mb-4">Kita Suruh hadir sebagai solusi untuk mempermudah aktivitas harian masyarakat yang sibuk. Kami memahami bahwa waktu Anda sangat berharga.</p>
+                        <p class="text-gray-600 mb-6">Dengan tim profesional yang terlatih dan terpercaya, kami berkomitmen untuk memberikan pelayanan terbaik dengan harga yang kompetitif.</p>
+                        <div class="space-y-4">
                             <div class="flex items-start">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                    <i class="fas fa-map-marker-alt text-primary"></i>
+                                <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
+                                    <i class="fas fa-check text-primary"></i>
                                 </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Alamat</h4>
-                                    <p class="text-gray-600">Jl. Cik Ditiro No. 41, Tanjung Selor</p>
+                                <p class="text-gray-700 flex-1">Lebih dari 1000+ pelanggan puas</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
+                                    <i class="fas fa-check text-primary"></i>
+                                </div>
+                                <p class="text-gray-700 flex-1">Tim profesional yang terlatih dan terverifikasi</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-4">
+                                    <i class="fas fa-check text-primary"></i>
+                                </div>
+                                <p class="text-gray-700 flex-1">Garansi kepuasan pelanggan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Apa Kata Mereka?</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Testimoni dari pelanggan yang telah menggunakan layanan Kita Suruh</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Budi Santoso</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
                                 </div>
                             </div>
+                        </div>
+                        <p class="text-gray-600">"Jasa pindahan dari Kita Suruh sangat membantu. Timnya profesional dan barang-barang sampai dengan selamat. Terima kasih!"</p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Ani Wijaya</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"Saya sering menggunakan jasa antar jemput anak sekolah. Driver-nya ramah dan tepat waktu. Sangat recommended!"</p>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Dewi Lestari</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"Cleaning service dari Kita Suruh sangat detail dalam membersihkan rumah saya. Hasilnya bersih maksimal dan harganya terjangkau."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 bg-primary">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Siap Membantu Kebutuhan Anda</h2>
+                <p class="text-white text-xl mb-8 max-w-2xl mx-auto">Pesan sekarang dan rasakan kemudahan dalam aktivitas harian Anda dengan layanan profesional dari Kita Suruh.</p>
+                <a href="https://wa.me/6285173177156?text=Halo%20Kita%20Suruh,%20saya%20ingin%20menggunakan%20layanan%20Anda" 
+                   class="bg-white hover:bg-gray-100 text-primary font-bold py-4 px-8 rounded-full text-lg inline-flex items-center transition duration-300">
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i> Hubungi via WhatsApp
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Kami siap menjawab pertanyaan dan membantu kebutuhan Anda</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                        <div class="bg-gray-50 rounded-xl p-8 shadow-sm">
+                            <h3 class="text-xl font-bold text-gray-800 mb-6">Informasi Kontak</h3>
                             
-                            <div class="flex items-start">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                    <i class="fas fa-phone-alt text-primary"></i>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Alamat</h4>
+                                        <p class="text-gray-600">Jl. Contoh No. 123, Jakarta Selatan</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Telepon</h4>
-                                    <p class="text-gray-600">+6285173177156</p>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                        <i class="fas fa-phone-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Telepon</h4>
+                                        <p class="text-gray-600">(021) 12345678</p>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                    <i class="fas fa-envelope text-primary"></i>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">Email</h4>
+                                        <p class="text-gray-600">info@kitasuruh.com</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Email</h4>
-                                    <p class="text-gray-600">info@kitasuruh.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                    <i class="fab fa-whatsapp text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">WhatsApp</h4>
-                                    <p class="text-gray-600">0851-7317-7156</p>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                                        <i class="fab fa-whatsapp text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">WhatsApp</h4>
+                                        <p class="text-gray-600">0851-7317-7156</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="md:w-1/2">
+                        <div class="bg-gray-50 rounded-xl p-8 shadow-sm">
+                            <h3 class="text-xl font-bold text-gray-800 mb-6">Kirim Pesan</h3>
+                            <form>
+                                <div class="mb-4">
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="phone" class="block text-gray-700 font-medium mb-2">Nomor Telepon</label>
+                                    <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="block text-gray-700 font-medium mb-2">Pesan</label>
+                                    <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                                </div>
+                                <button type="submit" class="bg-primary hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">
+                                    Kirim Pesan
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Team Page -->
+    <div id="team-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Tim <span class="text-primary">Kita Suruh</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Kenali tim profesional kami yang siap membantu kebutuhan Anda</p>
                 </div>
                 
-                <div class="md:w-1/2">
-                    <div class="bg-gray-50 rounded-xl p-8 shadow-sm">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Kirim Pesan</h3>
-                        <form>
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Team Member 1 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                                 alt="Andi Wijaya" class="w-full h-64 object-cover">
+                            <div class="team-social absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <div class="flex justify-center space-x-4">
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-instagram"></i></a>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Andi Wijaya</h3>
+                            <p class="text-primary font-medium mb-3">CEO & Founder</p>
+                            <p class="text-gray-600">Pendiri Kita Suruh dengan visi untuk mempermudah kehidupan masyarakat melalui layanan profesional.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" 
+                                 alt="Budi Santoso" class="w-full h-64 object-cover">
+                            <div class="team-social absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <div class="flex justify-center space-x-4">
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-instagram"></i></a>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="phone" class="block text-gray-700 font-medium mb-2">Nomor Telepon</label>
-                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Budi Santoso</h3>
+                            <p class="text-primary font-medium mb-3">Head of Operations</p>
+                            <p class="text-gray-600">Bertanggung jawab atas kelancaran operasional harian dan kualitas layanan Kita Suruh.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" 
+                                 alt="Citra Dewi" class="w-full h-64 object-cover">
+                            <div class="team-social absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <div class="flex justify-center space-x-4">
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-instagram"></i></a>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="message" class="block text-gray-700 font-medium mb-2">Pesan</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Citra Dewi</h3>
+                            <p class="text-primary font-medium mb-3">Marketing Manager</p>
+                            <p class="text-gray-600">Mengembangkan strategi pemasaran untuk memperkenalkan layanan Kita Suruh kepada masyarakat.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 4 -->
+                    <div class="team-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                                 alt="Dedi Kurniawan" class="w-full h-64 object-cover">
+                            <div class="team-social absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                <div class="flex justify-center space-x-4">
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" class="text-white hover:text-primary"><i class="fab fa-instagram"></i></a>
+                                </div>
                             </div>
-                            <button type="submit" class="bg-primary hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">
-                                Kirim Pesan
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Dedi Kurniawan</h3>
+                            <p class="text-primary font-medium mb-3">Customer Service Lead</p>
+                            <p class="text-gray-600">Memastikan setiap pelanggan mendapatkan pengalaman terbaik dalam menggunakan layanan Kita Suruh.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Team CTA -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Ingin Bergabung Dengan Tim Kami?</h2>
+                <p class="text-gray-600 text-xl mb-8 max-w-2xl mx-auto">Kami selalu mencari talenta-talenta baru untuk bergabung dan berkembang bersama Kita Suruh.</p>
+                <button onclick="showPage('careers')" class="bg-primary hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                    Lihat Lowongan Pekerjaan
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Blog Page -->
+    <div id="blog-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Blog <span class="text-primary">Kita Suruh</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Artikel dan tips bermanfaat seputar jasa harian dan kehidupan sehari-hari</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Tips Pindahan Rumah" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span>15 Juni 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>5 min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">10 Tips Pindahan Rumah Tanpa Stres</h3>
+                            <p class="text-gray-600 mb-4">Pindahan rumah bisa menjadi pengalaman yang menegangkan. Berikut tips untuk membuat proses pindahan Anda lebih mudah dan efisien.</p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Manfaat Cleaning Service" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span>2 Juni 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>4 min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">5 Manfaat Menggunakan Jasa Cleaning Service Profesional</h3>
+                            <p class="text-gray-600 mb-4">Membersihkan rumah sendiri memang bisa dilakukan, tapi menggunakan jasa profesional memberikan banyak keuntungan. Simak penjelasannya!</p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Menghemat Waktu" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span>20 Mei 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>6 min read</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Cara Efektif Menghemat Waktu dengan Jasa Harian</h3>
+                            <p class="text-gray-600 mb-4">Waktu adalah sumber daya yang tidak bisa diulang. Temukan cara efektif untuk menghemat waktu Anda dengan memanfaatkan jasa harian profesional.</p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Newsletter Subscription -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-sm max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Dapatkan Artikel Terbaru</h3>
+                    <p class="text-gray-600 mb-6 text-center">Berlangganan newsletter kami untuk mendapatkan artikel dan tips terbaru seputar jasa harian langsung ke email Anda.</p>
+                    <form class="flex flex-col md:flex-row gap-4">
+                        <input type="email" placeholder="Alamat email Anda" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <button type="submit" class="bg-primary hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                            Berlangganan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Careers Page -->
+    <div id="careers-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Karir di <span class="text-primary">Kita Suruh</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Bergabunglah dengan tim kami yang dinamis dan berkembang pesat</p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <!-- Career 1 -->
+                    <div class="career-card bg-white border-l-4 border-transparent rounded-lg shadow-md p-6 mb-6 transition duration-300">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Customer Service Representative</h3>
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Jakarta Selatan</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-briefcase mr-2"></i>
+                                <span>Full-time</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>Bersedia shift</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Kami mencari Customer Service Representative yang ramah dan berorientasi pada solusi untuk membantu pelanggan kami dengan pertanyaan dan permintaan layanan.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Ditutup pada 30 Juli 2023</span>
+                            <button class="bg-primary hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                                Lamar Sekarang
                             </button>
-                        </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Career 2 -->
+                    <div class="career-card bg-white border-l-4 border-transparent rounded-lg shadow-md p-6 mb-6 transition duration-300">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Driver Antar Jemput</h3>
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Jakarta, Tangerang, Bekasi</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-briefcase mr-2"></i>
+                                <span>Full-time/Part-time</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>Jam fleksibel</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Kami membutuhkan driver yang bertanggung jawab dan berpengalaman untuk layanan antar jemput pelanggan kami. Kendaraan pribadi diperlukan (mobil/motor).</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Ditutup pada 25 Juli 2023</span>
+                            <button class="bg-primary hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                                Lamar Sekarang
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Career 3 -->
+                    <div class="career-card bg-white border-l-4 border-transparent rounded-lg shadow-md p-6 mb-6 transition duration-300">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Marketing Digital Specialist</h3>
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Jakarta Selatan (Hybrid)</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-briefcase mr-2"></i>
+                                <span>Full-time</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>Jam kantor</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Kami mencari spesialis pemasaran digital yang kreatif untuk mengembangkan dan menjalankan kampanye digital yang efektif untuk meningkatkan kesadaran merek dan akuisisi pelanggan.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Ditutup pada 20 Juli 2023</span>
+                            <button class="bg-primary hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                                Lamar Sekarang
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Career 4 -->
+                    <div class="career-card bg-white border-l-4 border-transparent rounded-lg shadow-md p-6 mb-6 transition duration-300">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Cleaning Service Staff</h3>
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Jakarta, Depok, Bogor</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-briefcase mr-2"></i>
+                                <span>Part-time</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>Jam fleksibel</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Kami membutuhkan staf cleaning service yang teliti dan dapat diandalkan untuk memberikan layanan bersih-bersih berkualitas tinggi kepada pelanggan kami.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Ditutup pada 15 Juli 2023</span>
+                            <button class="bg-primary hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                                Lamar Sekarang
+                            </button>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- General Application -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-sm max-w-4xl mx-auto mt-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Tidak Menemukan Posisi yang Cocok?</h3>
+                    <p class="text-gray-600 mb-6 text-center">Kirimkan lamaran umum Anda dan kami akan menghubungi Anda ketika ada lowongan yang sesuai dengan profil Anda.</p>
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="fullname" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
+                            <input type="text" id="fullname" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Nomor Telepon</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="position" class="block text-gray-700 font-medium mb-2">Posisi yang Diminati</label>
+                            <input type="text" id="position" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="cv" class="block text-gray-700 font-medium mb-2">Unggah CV/Resume</label>
+                            <input type="file" id="cv" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Pesan Tambahan</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <button type="submit" class="bg-primary hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">
+                                Kirim Lamaran Umum
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
+
+    <!-- Privacy Policy Page -->
+    <div id="privacy-page" class="page">
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Kebijakan <span class="text-primary">Privasi</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Terakhir diperbarui: 1 Juni 2023</p>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">1. Pendahuluan</h3>
+                    <p class="text-gray-600 mb-6">
+                        Selamat datang di Kebijakan Privasi Kita Suruh. Kami menghargai privasi Anda dan berkomitmen untuk melindungi data pribadi Anda. Kebijakan ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi yang Anda berikan kepada kami.
+                    </p>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">2. Informasi yang Kami Kumpulkan</h3>
+                    <p class="text-gray-600 mb-4">
+                        Kami dapat mengumpulkan berbagai jenis informasi, termasuk:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-6">
+                        <li>Informasi pribadi (nama, alamat email, nomor telepon, alamat)</li>
+                        <li>Detail layanan yang Anda pesan</li>
+                        <li>Informasi pembayaran (kami tidak menyimpan detail kartu kredit)</li>
+                        <li>Data lokasi (untuk layanan berbasis lokasi)</li>
+                        <li>Informasi komunikasi antara Anda dan penyedia layanan kami</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">3. Bagaimana Kami Menggunakan Informasi Anda</h3>
+                    <p class="text-gray-600 mb-4">
+                        Informasi yang kami kumpulkan digunakan untuk:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-6">
+                        <li>Menyediakan dan mengelola layanan yang Anda minta</li>
+                        <li>Memproses pembayaran dan mencegah penipuan</li>
+                        <li>Berkomunikasi dengan Anda tentang layanan Anda</li>
+                        <li>Meningkatkan layanan dan pengalaman pelanggan kami</li>
+                        <li>Mematuhi kewajiban hukum dan peraturan</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">4. Berbagi Informasi</h3>
+                    <p class="text-gray-600 mb-6">
+                        Kami tidak menjual atau menyewakan data pribadi Anda kepada pihak ketiga. Kami dapat membagikan informasi Anda dengan:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-6">
+                        <li>Penyedia layanan yang melaksanakan pekerjaan atas nama kami</li>
+                        <li>Otoritas hukum jika diwajibkan oleh hukum</li>
+                        <li>Pihak ketiga dalam hal merger, akuisisi, atau penjualan aset</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">5. Keamanan Data</h3>
+                    <p class="text-gray-600 mb-6">
+                        Kami menerapkan langkah-langkah keamanan teknis dan organisasi yang sesuai untuk melindungi data pribadi Anda dari akses, pengungkapan, perubahan, atau penghancuran yang tidak sah.
+                    </p>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">6. Hak Anda</h3>
+                    <p class="text-gray-600 mb-4">
+                        Anda memiliki hak untuk:
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-6">
+                        <li>Mengakses informasi pribadi yang kami pegang tentang Anda</li>
+                        <li>Meminta koreksi data yang tidak akurat</li>
+                        <li>Meminta penghapusan data pribadi Anda dalam keadaan tertentu</li>
+                        <li>Menolak pemrosesan data Anda dalam keadaan tertentu</li>
+                        <li>Menerima data Anda dalam format yang terstruktur</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">7. Perubahan Kebijakan</h3>
+                    <p class="text-gray-600 mb-6">
+                        Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Kami akan memberi tahu Anda tentang perubahan material dengan menempatkan pemberitahuan yang mencolok di situs web kami atau dengan mengirimkan email kepada Anda.
+                    </p>
+                    
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">8. Hubungi Kami</h3>
+                    <p class="text-gray-600">
+                        Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di:
+                    </p>
+                    <p class="text-gray-600 mt-2">
+                        Email: privacy@kitasuruh.com<br>
+                        Telepon: (021) 12345678<br>
+                        Alamat: Jl. Contoh No. 123, Jakarta Selatan
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
@@ -405,22 +880,22 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4">Layanan</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Jasa Pindahan</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Antar Jemput</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Bersih-bersih</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Beli Makanan</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Jasa Lainnya</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('services')">Jasa Pindahan</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('services')">Antar Jemput</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('services')">Bersih-bersih</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('services')">Beli Makanan</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('services')">Jasa Lainnya</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="text-lg font-bold mb-4">Perusahaan</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Tentang Kami</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Tim Kami</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Karir</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('about')">Tentang Kami</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('team')">Tim Kami</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('careers')">Karir</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('blog')">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('privacy')">Kebijakan Privasi</a></li>
                     </ul>
                 </div>
                 
@@ -429,11 +904,11 @@
                     <ul class="space-y-2">
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt text-primary mr-2 mt-1"></i>
-                            <span class="text-gray-400">Jl. Cik Ditiro No. 41, Tanjung Selor</span>
+                            <span class="text-gray-400">Jl. Contoh No. 123, Jakarta Selatan</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-phone-alt text-primary mr-2"></i>
-                            <span class="text-gray-400">+6285173177156</span>
+                            <span class="text-gray-400">(021) 12345678</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fab fa-whatsapp text-primary mr-2"></i>
@@ -468,18 +943,24 @@
             mobileMenu.classList.toggle('hidden');
         });
         
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                mobileMenu.classList.add('hidden');
+        // Page navigation function
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
             });
-        });
+            
+            // Show selected page
+            document.getElementById(pageId + '-page').classList.add('active');
+            
+            // Close mobile menu if open
+            mobileMenu.classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize with home page
+        showPage('home');
     </script>
 </html>
