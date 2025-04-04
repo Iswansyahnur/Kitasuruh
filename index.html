@@ -1015,42 +1015,40 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Page navigation function
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById(`${pageId}-page`).classList.add('active');
-            
-            // Close mobile menu if open
-            mobileMenu.classList.add('hidden');
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    // Page navigation function
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
 
-        // Scroll to booking form
-        function scrollToBooking() {
-            showPage('home');
-            setTimeout(() => {
-                const bookingSection = document.getElementById('booking');
-                bookingSection.scrollIntoView({ behavior: 'smooth' });
-            }, 500);
-        }
+        // Show selected page
+        document.getElementById(`${pageId}-page`).classList.add('active');
 
-        // Job application modal
-        function openApplicationModal(position) {
-            document.getElementById('position-title').value = position;
-            document.getElementById('modal-position-title').textContent = `Lamar Posisi: ${position}`;
-            document.getElementById('application-modal').classList.remove('hidden');
-        }
+        // Close mobile menu if open
+        document.getElementById('mobile-menu').classList.add('hidden');
 
-        function closeApplicationModal() {
-            document.getElementById('application-modal').classList.add('hidden');
-        }
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Scroll to booking form
+    function scrollToBooking() {
+        showPage('home');
+        setTimeout(() => {
+            const bookingSection = document.getElementById('booking');
+            bookingSection.scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+    }
+
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
         // Back to top button
         const backToTopButton = document.getElementById('back-to-top');
@@ -1071,7 +1069,7 @@
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
             let isValid = true;
-            
+
             // Validate name
             const name = document.getElementById('name');
             const nameError = document.getElementById('name-error');
@@ -1081,9 +1079,72 @@
             } else {
                 nameError.classList.add('hidden');
             }
-            
+
             // Validate email
             const email = document.getElementById('email');
             const emailError = document.getElementById('email-error');
-            const emailRegex =
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                emailError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                emailError.classList.add('hidden');
+            }
+
+            // Validate phone
+            const phone = document.getElementById('phone');
+            const phoneError = document.getElementById('phone-error');
+            if (!phone.value.trim()) {
+                phoneError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                phoneError.classList.add('hidden');
+            }
+
+            // Validate service
+            const service = document.getElementById('service');
+            const serviceError = document.getElementById('service-error');
+            if (!service.value) {
+                serviceError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                serviceError.classList.add('hidden');
+            }
+
+            // Validate date
+            const date = document.getElementById('date');
+            const dateError = document.getElementById('date-error');
+            if (!date.value) {
+                dateError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                dateError.classList.add('hidden');
+            }
+
+            // Validate time
+            const time = document.getElementById('time');
+            const timeError = document.getElementById('time-error');
+            if (!time.value) {
+                timeError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                timeError.classList.add('hidden');
+            }
+
+            // Validate message
+            const message = document.getElementById('message');
+            const messageError = document.getElementById('message-error');
+            if (!message.value.trim()) {
+                messageError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                messageError.classList.add('hidden');
+            }
+
+            if (isValid) {
+                // Submit the form
+                this.submit();
+            }
+        });
+    });
 </html>
