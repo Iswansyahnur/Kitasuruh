@@ -357,63 +357,83 @@
         </section>
 
         <!-- Booking Form Section -->
-        <section id="booking" class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Formulir Pemesanan Langsung</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Isi formulir di bawah ini untuk memesan layanan kami secara langsung.</p>
-                </div>
-                
-                <form id="bookingForm" class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                    <div class="mb-4">
-                        <label for="name" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        <div id="name-error" class="error-message hidden">Nama lengkap harus diisi</div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        <div id="email-error" class="error-message hidden">Email harus valid</div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="phone" class="block text-gray-700 font-medium mb-2">Nomor Telepon</label>
-                        <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        <div id="phone-error" class="error-message hidden">Nomor telepon harus diisi</div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="service" class="block text-gray-700 font-medium mb-2">Layanan yang Dibutuhkan</label>
-                        <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                            <option value="" disabled selected>Pilih layanan</option>
-                            <option value="pindahan">Jasa Pindahan</option>
-                            <option value="antar_jemput">Antar Jemput</option>
-                            <option value="bersih_bersih">Jasa Bersih-bersih</option>
-                            <option value="beli_makanan">Jasa Beli Makanan</option>
-                            <option value="belanja">Jasa Belanja</option>
-                            <option value="lainnya">Jasa Lainnya</option>
-                        </select>
-                        <div id="service-error" class="error-message hidden">Silakan pilih layanan</div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="date" class="block text-gray-700 font-medium mb-2">Tanggal Pemesanan</label>
-                        <input type="date" id="date" name="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        <div id="date-error" class="error-message hidden">Tanggal harus diisi</div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="time" class="block text-gray-700 font-medium mb-2">Waktu Pemesanan</label>
-                        <input type="time" id="time" name="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                        <div id="time-error" class="error-message hidden">Waktu harus diisi</div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="message" class="block text-gray-700 font-medium mb-2">Pesan Tambahan</label>
-                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required></textarea>
-                        <div id="message-error" class="error-message hidden">Pesan harus diisi</div>
-                    </div>
-                    <button type="submit" class="bg-primary hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">
-                        Kirim Pemesanan
-                    </button>
-                </form>
+<section id="booking" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Formulir Pemesanan Langsung</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Isi formulir di bawah ini untuk memesan layanan kami secara langsung.</p>
+        </div>
+        
+        <form id="bookingForm" class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md" onsubmit="handleSubmit(event)">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 font-medium mb-2">Nama Lengkap</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                <div id="name-error" class="error-message hidden">Nama lengkap harus diisi</div>
             </div>
-        </section>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                <div id="email-error" class="error-message hidden">Email harus valid</div>
+            </div>
+            <div class="mb-4">
+                <label for="phone" class="block text-gray-700 font-medium mb-2">Nomor Telepon</label>
+                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                <div id="phone-error" class="error-message hidden">Nomor telepon harus diisi</div>
+            </div>
+            <div class="mb-4">
+                <label for="service" class="block text-gray-700 font-medium mb-2">Layanan yang Dibutuhkan</label>
+                <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                    <option value="" disabled selected>Pilih layanan</option>
+                    <option value="pindahan">Jasa Pindahan</option>
+                    <option value="antar_jemput">Antar Jemput</option>
+                    <option value="bersih_bersih">Jasa Bersih-bersih</option>
+                    <option value="beli_makanan">Jasa Beli Makanan</option>
+                    <option value="belanja">Jasa Belanja</option>
+                    <option value="lainnya">Jasa Lainnya</option>
+                </select>
+                <div id="service-error" class="error-message hidden">Silakan pilih layanan</div>
+            </div>
+            <div class="mb-4">
+                <label for="date" class="block text-gray-700 font-medium mb-2">Tanggal Pemesanan</label>
+                <input type="date" id="date" name="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                <div id="date-error" class="error-message hidden">Tanggal harus diisi</div>
+            </div>
+            <div class="mb-4">
+                <label for="time" class="block text-gray-700 font-medium mb-2">Waktu Pemesanan</label>
+                <input type="time" id="time" name="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                <div id="time-error" class="error-message hidden">Waktu harus diisi</div>
+            </div>
+            <div class="mb-4">
+                <label for="message" class="block text-gray-700 font-medium mb-2">Pesan Tambahan</label>
+                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                <div id="message-error" class="error-message hidden">Pesan harus diisi</div>
+            </div>
+            <button type="submit" class="bg-primary hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">
+                Kirim Pemesanan
+            </button>
+        </form>
+    </div>
+</section>
+
+<script>
+    function handleSubmit(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const service = document.getElementById('service').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const message = document.getElementById('message').value;
+
+        const whatsappMessage = `Halo Kita Suruh, saya ingin memesan layanan. Berikut detailnya:\n\nNama: ${name}\nEmail: ${email}\nNomor Telepon: ${phone}\nLayanan: ${service}\nTanggal Pemesanan: ${date}\nWaktu Pemesanan: ${time}\nPesan Tambahan: ${message}`;
+        
+        const whatsappLink = `https://wa.me/6285173177156?text=${encodeURIComponent(whatsappMessage)}`;
+        
+        window.location.href = whatsappLink;
+    }
+</script>
     </div>
 
     <!-- Team Page -->
